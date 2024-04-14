@@ -1,10 +1,60 @@
 <!DOCTYPE html>
  <html>
   <head>
-   <title>Data Collector for AGOL</title>
+
+    <!-- Add the title and meta tags -->
+    <meta charset="utf-8" /> <!-- character encoding -->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" /> <!-- viewport settings -->
+   
+    <title>Data Collector for AGOL</title>
+
+    <!-- Add the CSS links and other export links and CDNs are important for this bringing in the closest server-->
+    <!-- this is bringing in our CSS and JS files from the ArcGIS Online server -->
+    <link rel="stylesheet" href="https://js.arcgis.com/4.26/esri/themes/light/main.css" />
+    <script src="https://js.arcgis.com/4.26/"></script>
+
+    <!-- It is best practice to add styles after the CSS style sheets since they may use the same labels but luckily nothing is apparent -->
+    <!-- Making my map full screen -->
+    <style> 
+        html,
+        body,
+        #viewDiv {
+         padding: 0;
+         margin: 0;
+         height: 100%;
+         width: 100%;
+        }
+    </style>
+
+    <!-- Adding Modules -->
+    <script>
+        require([ "esri/config","esri/Map", "esri/views/MapView" ], (esriConfig,Map, MapView) => {
+         
+
+         //using our api key to access the maps and other resources
+         esriConfig.apiKey = "AAPK92af26d9842a48ccb552c0ae5e32b5ceJiMRXou8m248fRCfrZyuCLLaXmyktnHdb2BWly3eHgL4zpiJpIXKmteMHEg8TE6w";
+
+         //Now we need to add the map and view by constructing a new map variable and a new view variable
+         const map = new Map({
+            basemap: "satellite",
+            
+        });
+
+        const view = new MapView({
+            container: "viewDiv", // Reference to the DOM node that will contain the view
+            map: map // References the map object
+        });
+
+});
+    </script>
+
   </head>
+
   <body>
-   <!-- hello world text to check if everything worked -->
-   <h1>Hello World! I am ready to collect data.</h1>
+   <!-- hello world text to check if everything worked
+   <h1>Hello World! I am ready to collect data.</h1>-->
+
+    <div id="viewDiv"></div>
   </body>
+
 </html>

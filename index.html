@@ -35,8 +35,9 @@
             "esri/widgets/Locate", // Locate module is added
             "esri/widgets/Search",// Search module is added
             "esri/widgets/ScaleBar",// ScaleBar module is added
-            "esri/widgets/Expand" ], // Expand module is added to collapse and expand the widgets
-        (esriConfig,Map, MapView, Locate, Search, ScaleBar, Expand) => {
+            "esri/widgets/Expand", // Expand module is added to collapse and expand the widgets
+            "esri/layers/FeatureLayer"],//add a feature layer module
+        (esriConfig,Map, MapView, Locate, Search, ScaleBar, Expand, FeatureLayer) => {
          
 
          //using our api key to access the maps and other resources
@@ -95,6 +96,15 @@
         view.ui.add(scaleBar, {
             position: "top-right"
         });
+
+        // Create featurelayer from feature service 
+        const layer = new FeatureLayer({ 
+        // URL to the service 
+        url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/survey123_d305f5be317345a7abd734bbcd12fb70_results/FeatureServer"
+        //Links to an external site." //Your item URL Goes Here
+        });
+
+        map.add(layer);
 
     });
     </script>

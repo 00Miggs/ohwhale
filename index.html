@@ -55,8 +55,10 @@
             "esri/widgets/Search",// Search module is added
             "esri/widgets/ScaleBar",// ScaleBar module is added
             "esri/widgets/Expand", // Expand module is added to collapse and expand the widgets
-            "esri/layers/FeatureLayer"],//add a feature layer module
-        (esriConfig,Map, MapView, Locate, Search, ScaleBar, Expand, FeatureLayer) => {
+            "esri/layers/FeatureLayer",//add a feature layer module
+            "esri/widgets/BasemapGallery",
+            ""],
+        (esriConfig,Map, MapView, Locate, Search, ScaleBar, Expand, FeatureLayer, BasemapGallery) => {
          
 
          //using our api key to access the maps and other resources
@@ -124,6 +126,46 @@
         });
 
         map.add(layer);
+
+        //Currently adding a basemap gallery widget that allows users to switch between basemaps of their choice
+        const basemap1 = new Basemap({
+        portalItem: { // autocasts as new PortalItem()
+            id: "867895a71a1840399476fc717e76bb43" // ID of the mid century basemap
+        }
+    });
+
+    const basemap2 = new Basemap({
+        portalItem: { // autocasts as new PortalItem()
+            id: "f35ef07c9ed24020aadd65c8a65d3754" // ID of the modern antique basemap
+        }
+    });
+
+    const basemap3 = new Basemap({
+        portalItem: { // autocasts as new PortalItem()
+            id: "satellite" // ID of the regular satellite basemap
+        }
+    });
+    const basemap4 = new Basemap({
+        portalItem: { // autocasts as new PortalItem()
+            id: "67ab7f7c535c4687b6518e6d2343e8a2" // ID of the Oceans Basemap
+        }
+    });
+
+    // Create a BasemapGallery widget instance and set its container to a div element
+    const basemapGallery = new BasemapGallery({
+        view: view,
+        source: [basemap1, basemap2, basemap3, basemap4], // Set the source to the three basemaps
+        container: document.createElement("div")
+    });
+
+    // Create an Expand instance and set the content to the BasemapGallery widget making it collapsible
+    const bgExpand = new Expand({
+        view: view,
+        content: basemapGallery
+    });
+
+    // Add the expand instance to the view's UI
+    view.ui.add(bgExpand, "top-right");
 
     });
     </script>

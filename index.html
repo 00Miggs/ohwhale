@@ -73,8 +73,8 @@
         const view = new MapView({
             container: "viewDiv", // Reference to the DOM node that will contain the view
             map: map, // References the map object
-            zoom: 4, // Sets the zoom level based on level of detail (LOD)          //Challenge 1: Change the zoom level to 4 and the center to [-81.5494, 28.3747]
-            center: [-81.5494, 28.3747] // Sets the center point of the view in lon/lat
+            zoom: 4, // Sets the zoom level based on level of detail (LOD)     
+            center: [0, 0] // Sets the center point of the view in lon/lat
         });
 
         const locateBtn = new Locate({
@@ -115,7 +115,7 @@
         });
 
         view.ui.add(scaleBar, {
-            position: "top-right"
+            position: "bottom-right"
         });
 
         // Create featurelayer from feature service 
@@ -151,7 +151,7 @@
         }
     });
 
-    map.basemap = basemap3; // Set the map's basemap to the mid century basemap by default
+    map.basemap = basemap3; // Set the map's basemap to the satellite basemap by default
 
     // Create a BasemapGallery widget instance and set its container to a div element
     const basemapGallery = new BasemapGallery({

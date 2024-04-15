@@ -57,8 +57,8 @@
             "esri/widgets/Expand", // Expand module is added to collapse and expand the widgets
             "esri/layers/FeatureLayer",//add a feature layer module
             "esri/widgets/BasemapGallery",
-            ""],
-        (esriConfig,Map, MapView, Locate, Search, ScaleBar, Expand, FeatureLayer, BasemapGallery) => {
+            "esri/Basemap",],
+        (esriConfig,Map, MapView, Locate, Search, ScaleBar, Expand, FeatureLayer, BasemapGallery, Basemap) => {
          
 
          //using our api key to access the maps and other resources
@@ -151,7 +151,7 @@
         }
     });
 
-    map.basemap = basemap3; // Set the map's basemap to the mid century basemap by default
+    map.basemap = basemap1; // Set the map's basemap to the mid century basemap by default
 
     // Create a BasemapGallery widget instance and set its container to a div element
     const basemapGallery = new BasemapGallery({

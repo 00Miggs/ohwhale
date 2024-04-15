@@ -32,8 +32,11 @@
             "esri/config",
             "esri/Map", 
             "esri/views/MapView", 
-            "esri/widgets/Locate" ], 
-        (esriConfig,Map, MapView, Locate) => {
+            "esri/widgets/Locate", // Locate module is added
+            "esri/widgets/Search",// Search module is added
+            "esri/widgets/ScaleBar",// ScaleBar module is added
+            "esri/widgets/Expand" ], // Expand module is added to collapse and expand the widgets
+        (esriConfig,Map, MapView, Locate, Search, ScaleBar, Expand) => {
          
 
          //using our api key to access the maps and other resources
@@ -53,12 +56,44 @@
         });
 
         const locateBtn = new Locate({
-          view: view
+            view: view
         });
 
         // Add the locate widget to the top left corner of the view
         view.ui.add(locateBtn, {
-          position: "top-left"
+            position: "top-left"
+        });
+
+        // creating a new search widget
+        const search = new Search({ 
+            view: view
+        });
+
+        // Add the search widget to the top right corner of the view
+        // view.ui.add(search, {
+        //   position: "bottom-left"
+        // });
+
+        //Constructing a new expand widget for the search widget
+        const searchExpand = new Expand({
+            view: view,
+            content: search,
+            expanded: true // Set to false if you want the widget to start collapsed
+        });
+
+        view.ui.add(searchExpand, {
+            position: "bottom-left"
+        });
+
+        //Challenge 2: Add a search widget to the bottom left corner of the view
+
+        //personal challenge: Add a scale bar to the top right corner of the view
+        const scaleBar = new ScaleBar({
+            view: view
+        });
+
+        view.ui.add(scaleBar, {
+            position: "top-right"
         });
 
     });

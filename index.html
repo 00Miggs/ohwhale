@@ -57,12 +57,11 @@
             "esri/widgets/Expand", // Expand module is added to collapse and expand the widgets
             "esri/layers/FeatureLayer",//add a feature layer module
             "esri/widgets/BasemapGallery", // BasemapGallery module is added
-            "esri/Basemap"//,// Basemap module is added
-           // "esri/renderers/UniqueValueRenderer",
-           // "esri/symbols/PictureMarkerSymbol",
-           // "esri/symbols/PopupTemplate"],
-            ],
-        (esriConfig,Map, MapView, Locate, Search, ScaleBar, Expand, FeatureLayer, BasemapGallery, Basemap/*, UniqueValueRenderer, PictureMarkerSymbol, PopupTemplate*/) => {
+            "esri/Basemap",// Basemap module is added
+            "esri/renderers/UniqueValueRenderer",
+            "esri/symbols/PictureMarkerSymbol",
+            "esri/symbols/PopupTemplate"],
+        (esriConfig,Map, MapView, Locate, Search, ScaleBar, Expand, FeatureLayer, BasemapGallery, Basemap, UniqueValueRenderer, PictureMarkerSymbol, PopupTemplate) => {
          
 
          //using our api key to access the maps and other resources
@@ -123,49 +122,50 @@
 //--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------//
 // Our feature layer displaying the results of our survey
         // Create a UniqueValueRenderer
-        // const renderer = new UniqueValueRenderer({
-        //     field: "field_7 ", // The field to classify by
-        //     uniqueValueInfos: [
-        //         {
-        //             value: 'Dolphin', // The value of the classification field for the first species
-        //             symbol: new PictureMarkerSymbol({ // The symbol to use for the first species
-        //                 url: "dolphin.png",
-        //                 width: "10px", // The width of the symbol
-        //                 height: "10px", // The height of the symbol
-        //             })
-        //         },
-        //         {
-        //             value: "Orca", // The value of the classification field for the second species
-        //             symbol: new PictureMarkerSymbol({ // The symbol to use for the second species
-        //                 url: "orca.png", 
-        //                 width: "13px", // The width of the symbol
-        //                 height: "13px", // The height of the symbol
-        //             })
-        //         },
-        //         {
-        //             value: "Whale", // The value of the classification field for the first species
-        //             symbol: new PictureMarkerSymbol({ // The symbol to use for the first species
-        //                 url: "whale.png", 
-        //                 width: "16px", // The width of the symbol
-        //                 height: "16px", // The height of the symbol
-        //             })
-        //         },
-        //     ]
-        // });
+        const renderer = new UniqueValueRenderer({
+            field: "field_7 ", // The field to classify by
+            uniqueValueInfos: [
+                {
+                    value: "Dolphin", // The value of the classification field for the first species
+                    symbol: new PictureMarkerSymbol({ // The symbol to use for the first species
+                        url: "dolphin.png",
+                        width: "10px", // The width of the symbol
+                        height: "10px", // The height of the symbol
+                    })
+                },
+                {
+                    value: "Orca", // The value of the classification field for the second species
+                    symbol: new PictureMarkerSymbol({ // The symbol to use for the second species
+                        url: "orca.png", 
+                        width: "13px", // The width of the symbol
+                        height: "13px", // The height of the symbol
+                    })
+                },
+                {
+                    value: "Whale", // The value of the classification field for the first species
+                    symbol: new PictureMarkerSymbol({ // The symbol to use for the first species
+                        url: "whale.png", 
+                        width: "16px", // The width of the symbol
+                        height: "16px", // The height of the symbol
+                    })
+                },
+            ]
+        });
 
-        // //We are now going to add popups from the survey results and then change the icons based on the species (only 3 of them)
-        // const popupTemplate = {
-        //     title: "What People Spotted",
-        //     content: "They spotted a {field_7 }! Their description states: {can_you_provide_details_on_what }"
-        // };
+        //We are now going to add popups from the survey results and then change the icons based on the species (only 3 of them)
+        const popupTemplate = {
+            title: "What People Spotted",
+            content: "They spotted a {field_7 }! Their description states: {can_you_provide_details_on_what }"
+        };
 
-        // // Create featurelayer from feature service 
+        // Create featurelayer from feature service 
         const layer = new FeatureLayer({ 
             // URL to the service 
-            url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/survey123_45d90682b98b47e4a98fd38e4bfb3e50_results/FeatureServer"
+            url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/survey123_45d90682b98b47e4a98fd38e4bfb3e50_results/FeatureServer",
             //Links to an external site." //Your item URL Goes Here
-            //renderer: renderer,
-            //popupTemplate: popupTemplate
+            renderer: renderer,
+            popupTemplate: popupTemplate,
+            outFields: ["field_7 ", "can_you_provide_details_on_what "]
         });
 
         map.add(layer);

@@ -11,4 +11,5 @@ Be part of the Whale Watching team and shout "OH, WHALE!" by adding in your own 
 Link : https://arcg.is/00GDyH
 
 Created by: Brandon Miguel
-Resources: ArcGIS Online; Survey123 by AGOL ; HTML ; CSS; JSON ; tba
+
+Resources: ArcGIS Online; Survey123 by AGOL ; HTML ; CSS; JSON ; GIS4102C GIS Programming University of Florida

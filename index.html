@@ -130,8 +130,28 @@
             symbol: {
                 type: "picture-marker",
                 url: "pngimg.com - dolphin_PNG71334.png",
-                width: "10px",
-                height: "10px"
+                width: "20px",
+                height: "20px"
+            }
+        };
+
+        const orcarenderer = {
+            type: "simple",
+            symbol: {
+                type: "picture-marker",
+                url: "pngtree-cute-orca-vector-illustration-png-image_6096594.png",
+                width: "20px",
+                height: "20px"
+            }
+        };
+
+        const whalerenderer = {
+            type: "simple",
+            symbol: {
+                type: "picture-marker",
+                url: "whale.png",
+                width: "20px",
+                height: "20px"
             }
         };
 
@@ -145,7 +165,27 @@
             definitionExpression: "field_7 = 'Dolphin'"
         });
 
+        const orcalayer = new FeatureLayer({ 
+            // URL to the service 
+            url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/survey123_45d90682b98b47e4a98fd38e4bfb3e50_results/FeatureServer",
+            outFields: ["field_7", "can_you_provide_details_on_what"],
+            popupTemplate: sightingpopup,
+            renderer: orcarenderer,
+            definitionExpression: "field_7 = 'Orca'"
+        });
+
+        const whalelayer = new FeatureLayer({ 
+            // URL to the service 
+            url: "https://services.arcgis.com/LBbVDC0hKPAnLRpO/arcgis/rest/services/survey123_45d90682b98b47e4a98fd38e4bfb3e50_results/FeatureServer",
+            outFields: ["field_7", "can_you_provide_details_on_what"],
+            popupTemplate: sightingpopup,
+            renderer: orcarenderer,
+            definitionExpression: "field_7 = 'Whale'"
+        });
+
         map.add(dolphinlayer);
+        map.add(orcalayer);
+        map.add(whalelayer);
 
         //Currently adding a basemap gallery widget that allows users to switch between basemaps of their choice
         const basemap1 = new Basemap({
